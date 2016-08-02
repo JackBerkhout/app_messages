@@ -17,7 +17,7 @@ export class MessageService {
         const headers = new Headers({'Content-Type': 'application/json'});
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
         // return this._http.post('http://localhost:3000/message' + token, body, {headers: headers})
-        return this._http.post('http://jacksoft-angular2-deployment.herokuapp.com/message' + token, body, {headers: headers})
+        return this._http.post('https://jacksoft-angular2-deployment.herokuapp.com/message' + token, body, {headers: headers})
             .map(response => {
                 const data = response.json().obj;
                 let message = new Message(data.content, data._id, data.user.firstName, data.user._id);
@@ -28,7 +28,7 @@ export class MessageService {
 
     getMessages() {
         // return this._http.get('http://localhost:3000/message')
-        return this._http.get('http://jacksoft-angular2-deployment.herokuapp.com/message')
+        return this._http.get('https://jacksoft-angular2-deployment.herokuapp.com/message')
             .map(response => {
                 const data = response.json().obj;
                 let objs: any[] = [];
@@ -46,7 +46,7 @@ export class MessageService {
         const headers = new Headers({'Content-Type': 'application/json'});
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
         // return this._http.patch('http://localhost:3000/message/' + message.messageId + token, body, {headers: headers})
-        return this._http.patch('http://jacksoft-angular2-deployment.herokuapp.com/message/' + message.messageId + token, body, {headers: headers})
+        return this._http.patch('https://jacksoft-angular2-deployment.herokuapp.com/message/' + message.messageId + token, body, {headers: headers})
             .map(response => response.json())
             .catch(error => Observable.throw(error.json()));
     }
@@ -59,7 +59,7 @@ export class MessageService {
         this.messages.splice(this.messages.indexOf(message), 1);
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
         // return this._http.delete('http://localhost:3000/message/' + message.messageId + token)
-        return this._http.delete('http://jacksoft-angular2-deployment.herokuapp.com/message/' + message.messageId + token)
+        return this._http.delete('https://jacksoft-angular2-deployment.herokuapp.com/message/' + message.messageId + token)
             .map(response => response.json())
             .catch(error => Observable.throw(error.json()));
     }
